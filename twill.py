@@ -26,7 +26,7 @@ def create_twill(N, warp, weft, treadles=4, treadle_sequence=np.array([1,2,3,4])
     else:
         return data, None
 
-def generate_random_twill(min_N, max_N, max_treadles=10):
+def generate_random_twill(min_N, max_N, max_treadles=10, size=(1000,1000)):
     # Grid size is NxN
     N = randint(min_N, max_N)
 
@@ -68,5 +68,6 @@ def generate_random_twill(min_N, max_N, max_treadles=10):
               'weft': weft_seed
               }
     _, filename = create_twill(N, warp, weft, treadles=treadles,
-                               treadle_sequence=treadle_sequence, save=True)
+                               treadle_sequence=treadle_sequence,
+                               save=True, size=size)
     return params, filename
