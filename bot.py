@@ -1,6 +1,9 @@
 from settings import *
 from twitter import *
 from twill import *
+from random import random
+
+TWEET_PROBABILITY = 0.3
 
 def get_clients():
     auth = OAuth(MY_ACCESS_TOKEN_KEY,
@@ -13,9 +16,8 @@ def get_clients():
     return t, t_up
 
 if __name__=='__main__':
-    n_twills = 1
-    t, t_up = get_clients()
-    for _ in range(n_twills):
+    if random() < TWEET_PROBABILITY:
+        t, t_up = get_clients()
         params, filename = generate_random_twill(16, 128, max_treadles=10)
         status = "sequence: %s warp: %s weft: %s" % (
                      ''.join(map(str, params['treadle_sequence'])),
